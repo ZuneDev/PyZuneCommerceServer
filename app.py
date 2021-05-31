@@ -14,8 +14,8 @@ app = Flask(__name__)
 musicbrainzngs.set_useragent("Zune", "4.8", "https://github.com/yoshiask/PyZuneCommerceServer")
 
 
-@app.route(f"/v2/<string:locale>/account/signin")
-def music_get_album(locale: str):
+@app.route(f"/v2/<string:locale>/account/signin", methods=['POST'])
+def account_signin(locale: str):
     print(request.data)
     signinReq: Document = xml.parseString(request.data.decode('utf-8'))
     tunerInfo: Element = signinReq.firstChild
